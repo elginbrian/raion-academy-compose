@@ -1,5 +1,6 @@
 package com.elginbrian.shopease
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -19,17 +20,23 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 
 @Composable
 @Preview
 fun ProductWidget(
-    product: ProductEntity = ProductList.products[0]
+    product: ProductEntity = ProductList.products[0],
+    onClick: (product: ProductEntity) -> Unit = {},
 ){
     Card(
         modifier = Modifier
             .width(140.dp)
-            .height(220.dp),
+            .height(220.dp)
+            .clickable {
+                onClick(product)
+            },
         colors = CardDefaults.cardColors(Color.White),
         elevation = CardDefaults.cardElevation(10.dp)
     ) {
